@@ -1,0 +1,6 @@
+mypy
+ruff
+typing-extensions
+twine
+setuptools
+types-setuptools

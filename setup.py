@@ -13,8 +13,8 @@ requirements = [
 
 setup(
     name="syncio",
-    version="v0.0.1",
-    description="type safe for synchronous python concurrently",
+    version="v0.0.2",
+    description="type safety for synchronous concurrent task",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="guangrei",

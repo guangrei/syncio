@@ -1,16 +1,16 @@
 # -*-coding:utf8;-*-
 from abc import ABC, abstractmethod
-from typing import Callable, List, Any, Iterator, Dict
+from typing import Callable, Tuple, List, Any, Iterator, Dict
 from typing_extensions import Self
 
 
 class NewTask(ABC):
     func: Callable[..., Any]
-    args: List[Any]
+    args: Tuple[Any]
     kwargs: Dict[str, Any]
 
     @abstractmethod
-    def __init__(self, func: Callable[..., Any]) -> None:
+    def __init__(self, func: Callable[..., Any], *args: Any, **kwargs: Any) -> None:
         pass
 
     @abstractmethod
@@ -19,25 +19,21 @@ class NewTask(ABC):
 
 
 class create_task(NewTask):
-    def __init__(self, func: Callable[..., Any]) -> None:
+    def __init__(self, func: Callable[..., Any], *args: Any, **kwargs: Any) -> None:
         self.func = func
-        self.args: List[Any] = []
-        self.kwargs: Dict[str, Any] = {}
+        self.args: Tuple[Any] = args
+        self.kwargs: Dict[str, Any] = kwargs
 
     def __call__(self, *args: Any, **kwargs: Any) -> Self:
-        self.args = list(args)
-        self.kwargs = dict(kwargs)
+        self.args = args
+        self.kwargs = kwargs
         return self
 
 
 class TaskOutput(dict):  # type: ignore[type-arg]
-    def __init__(self, data: Dict[str, Any]) -> None:
-        self._data = data
-        super().__init__(data)
-
     def __iter__(self) -> Iterator[Any]:
         output: List[Any] = []
-        for _, v in self._data.items():
+        for _, v in self.items():
             output.append(v)
         self._output_list = output
         self._index = 0

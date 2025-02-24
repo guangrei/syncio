@@ -1,6 +1,10 @@
 [![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff) 
 [![mypy](https://github.com/guangrei/syncio/actions/workflows/mypy_check.yml/badge.svg)](https://github.com/guangrei/syncio/actions) 
 
+[![Downloads](https://static.pepy.tech/badge/syncio)](https://pepy.tech/project/syncio)
+[![Downloads](https://static.pepy.tech/badge/syncio/month)](https://pepy.tech/project/syncio)
+[![Downloads](https://static.pepy.tech/badge/syncio/week)](https://pepy.tech/project/syncio)
+
 Syncio is inspired by `asyncio`. you can easy to create task and gather with `syncio.gather()` (multiprocessing) or `syncio.thread_gather()` (threading).
 
 ## Example

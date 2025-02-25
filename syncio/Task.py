@@ -8,7 +8,7 @@ import pprint
 
 class NewTask(ABC):
     func: Callable[..., Any]
-    args: Tuple[Any]
+    args: Tuple[Any, ...]
     kwargs: Dict[str, Any]
 
     @abstractmethod
@@ -25,9 +25,14 @@ class NewTask(ABC):
 
 
 class create_task(NewTask):
-    def __init__(self, func: Callable[..., Any], *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        func: Callable[..., Any],
+        args: Tuple[Any, ...] = (),
+        kwargs: Dict[str, Any] = {},
+    ) -> None:
         self.func = func
-        self.args: Tuple[Any] = args
+        self.args: Tuple[Any, ...] = args
         self.kwargs: Dict[str, Any] = kwargs
 
     def __call__(self, *args: Any, **kwargs: Any) -> Self:

@@ -32,8 +32,8 @@ class create_task(NewTask):
         kwargs: Dict[str, Any] = {},
     ) -> None:
         self.func = func
-        self.args: Tuple[Any, ...] = args
-        self.kwargs: Dict[str, Any] = kwargs
+        self.args = args
+        self.kwargs = kwargs
 
     def __call__(self, *args: Any, **kwargs: Any) -> Self:
         self.args = args

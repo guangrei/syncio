@@ -13,7 +13,7 @@ requirements = [
 
 setup(
     name="syncio",
-    version="v0.0.2",
+    version="v0.0.4",
     description="type safety for synchronous concurrent task",
     long_description=long_description,
     long_description_content_type="text/markdown",

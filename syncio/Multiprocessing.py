@@ -1,6 +1,6 @@
 # -*-coding:utf8;-*-
 from multiprocessing import Process, Manager
-from syncio.Task import NewTask, TaskOutput
+from syncio.Task import NewTask, TaskOutput, TaskReturnException
 
 
 def gather(*args: NewTask) -> TaskOutput:
@@ -10,7 +10,10 @@ def gather(*args: NewTask) -> TaskOutput:
 
     def runner(tasker: NewTask, task_id: int) -> None:
         task_id += 1
-        result = tasker.func(*tasker.args, **tasker.kwargs)
+        try:
+            result = tasker.func(*tasker.args, **tasker.kwargs)
+        except BaseException as e:
+            result = TaskReturnException(e)
         ret[f"task_{task_id}"] = result
 
     for k, f in enumerate(args):
